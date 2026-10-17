@@ -110,22 +110,22 @@
             </a>
         </div>
 
-        <!-- Section Dividers / Toggle Buttons for Modal/Views -->
+        <!-- Direct Navigation Buttons to Subdomain Sections -->
         <div class="space-y-3 font-action">
-            <button onclick="openModal('comics')" class="w-full py-4 bg-gangRed hover:bg-red-700 text-white rounded-xl text-xl tracking-wider uppercase transition flex items-center justify-center space-x-2 box-glow-red">
+            <a href="https://legadodelbarrio.julcagallego.com/#comics" target="_blank" rel="noopener noreferrer" class="w-full py-4 bg-gangRed hover:bg-red-700 text-white rounded-xl text-xl tracking-wider uppercase transition flex items-center justify-center space-x-2 box-glow-red">
                 <i class="fa-solid fa-book-open"></i>
                 <span>Ver Cómics (Capítulos 1-4)</span>
-            </button>
+            </a>
 
-            <button onclick="openModal('audiobooks')" class="w-full py-4 bg-black border border-gangBorder hover:border-gangYellow text-gangYellow rounded-xl text-xl tracking-wider uppercase transition flex items-center justify-center space-x-2">
+            <a href="https://legadodelbarrio.julcagallego.com/#multimedia" target="_blank" rel="noopener noreferrer" class="w-full py-4 bg-black border border-gangBorder hover:border-gangYellow text-gangYellow rounded-xl text-xl tracking-wider uppercase transition flex items-center justify-center space-x-2">
                 <i class="fa-solid fa-headphones"></i>
                 <span>Escuchar Audiolibros</span>
-            </button>
+            </a>
 
-            <button onclick="openModal('carnet')" class="w-full py-4 bg-black border border-gangBorder hover:border-gangRed text-white rounded-xl text-xl tracking-wider uppercase transition flex items-center justify-center space-x-2">
+            <a href="https://legadodelbarrio.julcagallego.com/#carnet" target="_blank" rel="noopener noreferrer" class="w-full py-4 bg-black border border-gangBorder hover:border-gangRed text-white rounded-xl text-xl tracking-wider uppercase transition flex items-center justify-center space-x-2">
                 <i class="fa-solid fa-id-card"></i>
                 <span>Generar Carnet Clandestino</span>
-            </button>
+            </a>
         </div>
 
         <!-- Footer Branding -->
@@ -135,176 +135,5 @@
         </div>
     </main>
 
-    <!-- MODAL POPUP CONTAINER -->
-    <div id="modal-container" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-gangGray border-2 border-gangRed rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 relative space-y-6 box-glow-red">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold focus:outline-none">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div id="modal-content" class="space-y-6">
-                <!-- Dinámico -->
-            </div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LINKTREE LOGIC -->
-    <script>
-        const comicData = {
-            1: {
-                title: "Capítulo 1: Sombras en la Ruta",
-                cover: "https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%201/Portada.jpg",
-                pages: Array.from({length: 10}, (_, i) => `https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%201/Pagina%20${i+1}.jpg`)
-            },
-            2: {
-                title: "Capítulo 2: Sombras del Poder",
-                cover: "https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%202/Portada.jpg",
-                pages: Array.from({length: 10}, (_, i) => `https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%202/Pagina%20-%20${i+1}.jpg`)
-            },
-            3: {
-                title: "Capítulo 3: Una Advertencia",
-                cover: "https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%203/Portada%20-%203.jpg",
-                pages: Array.from({length: 10}, (_, i) => `https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%203/Pagina%20-%20${i+1}%20-%203.jpg`)
-            },
-            4: {
-                title: "Capítulo 4: La Nueva Gran Sangre",
-                cover: "https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%204/Portada%20-%204.jpg",
-                pages: Array.from({length: 10}, (_, i) => `https://cdn.julcagallego.com/LegadoDelBarrio/Comic%20-%20Tomo%204/Pagina%20${i+1}%20-%204.jpg`)
-            }
-        };
-
-        function openModal(type, chNum = 1) {
-            const modal = document.getElementById('modal-container');
-            const content = document.getElementById('modal-content');
-            modal.classList.remove('hidden');
-
-            if(type === 'comics') {
-                renderComicModal(chNum);
-            } else if(type === 'audiobooks') {
-                content.innerHTML = `
-                    <div class="text-center border-b border-gangBorder pb-4">
-                        <span class="stamp text-xs">REGISTROS AUDITIVOS</span>
-                        <h3 class="font-action text-3xl text-white mt-1">AUDIOLIBROS OFICIALES</h3>
-                    </div>
-                    <div class="space-y-6">
-                        <div class="bg-black/40 border border-gangBorder p-4 rounded-xl space-y-3">
-                            <div class="flex items-center space-x-4">
-                                <img src="https://cdn.julcagallego.com/LegadoDelBarrio/El%20Legado%20Del%20Barrio%20-%20Audiolibro.jpeg" class="w-16 h-16 object-cover rounded border border-gangRed">
-                                <div>
-                                    <h4 class="font-action text-xl text-white">Audiolibro - Capítulo 1</h4>
-                                    <p class="font-typewriter text-xs text-gray-400">El primer contacto y la advertencia en las calles.</p>
-                                </div>
-                            </div>
-                            <audio controls class="w-full accent-red-600"><source src="https://cdn.julcagallego.com/LegadoDelBarrio/Audiolibros/Audiolibro%20cap%201.mp3.mpeg" type="audio/mpeg"></audio>
-                        </div>
-                        <div class="bg-black/40 border border-gangBorder p-4 rounded-xl space-y-3">
-                            <div class="flex items-center space-x-4">
-                                <img src="https://cdn.julcagallego.com/LegadoDelBarrio/El%20Legado%20Del%20Barrio%20-%20Audiolibro.jpeg" class="w-16 h-16 object-cover rounded border border-gangRed">
-                                <div>
-                                    <h4 class="font-action text-xl text-white">Audiolibro - Capítulo 2</h4>
-                                    <p class="font-typewriter text-xs text-gray-400">Sombras del poder y registros offshore.</p>
-                                </div>
-                            </div>
-                            <audio controls class="w-full accent-red-600"><source src="https://cdn.julcagallego.com/LegadoDelBarrio/Audiolibros/Audiolibro%202.mp3.mpeg" type="audio/mpeg"></audio>
-                        </div>
-                        <div class="bg-black/40 border border-gangBorder p-4 rounded-xl space-y-3">
-                            <div class="flex items-center space-x-4">
-                                <img src="https://cdn.julcagallego.com/LegadoDelBarrio/El%20Legado%20Del%20Barrio%20-%20Audiolibro.jpeg" class="w-16 h-16 object-cover rounded border border-gangRed">
-                                <div>
-                                    <h4 class="font-action text-xl text-white">Audiolibro - Capítulo 3</h4>
-                                    <p class="font-typewriter text-xs text-gray-400">Sangre nueva y persecución final.</p>
-                                </div>
-                            </div>
-                            <audio controls class="w-full accent-red-600"><source src="https://cdn.julcagallego.com/LegadoDelBarrio/Audiolibros/audio-libro-3.mp3" type="audio/mpeg"></audio>
-                        </div>
-                    </div>
-                `;
-            } else if(type === 'carnet') {
-                content.innerHTML = `
-                    <div class="text-center border-b border-gangBorder pb-4">
-                        <span class="stamp text-xs">RECLUTAMIENTO ACTIVO</span>
-                        <h3 class="font-action text-3xl text-white mt-1">GENERADOR DE CARNET CLANDESTINO</h3>
-                    </div>
-                    <div class="space-y-4 font-mono">
-                        <div>
-                            <label class="block text-xs text-gray-400 uppercase mb-1">Alias / Nombre de Recluta</label>
-                            <input type="text" id="recrut-name" placeholder="Ej. Elías" class="w-full bg-gangDark border border-gangBorder rounded p-3 text-white focus:border-gangRed outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 uppercase mb-1">Zona de Operaciones</label>
-                            <select id="recrut-zone" class="w-full bg-gangDark border border-gangBorder rounded p-3 text-white focus:border-gangRed outline-none">
-                                <option>Zona Sur - Villa el Salvador</option>
-                                <option>Zona Norte - Callao</option>
-                                <option>Centro - Lima Cercado</option>
-                                <option>Zona Este - San Juan de Lurigancho</option>
-                            </select>
-                        </div>
-                        <button onclick="generateBadge()" class="w-full py-3.5 bg-gangRed text-white font-action text-lg tracking-wider rounded uppercase box-glow-red">Emitir Credencial</button>
-                        
-                        <div id="badge-output" class="hidden mt-6 p-6 bg-gangDark border-2 border-gangRed rounded-lg relative overflow-hidden space-y-4">
-                            <div class="flex justify-between items-start border-b border-gangBorder pb-4">
-                                <div>
-                                    <span class="text-[10px] text-gangRed font-bold uppercase">República de la Calle // Red Clandestina</span>
-                                    <h4 class="font-action text-xl text-white mt-1">CREDENCIAL DE RECLUTA</h4>
-                                </div>
-                                <span class="stamp text-[10px]">AUTORIZADO</span>
-                            </div>
-                            <div class="space-y-2 text-xs">
-                                <div class="flex justify-between"><span class="text-gray-400">AGENTE:</span><span id="output-name" class="text-white font-bold">—</span></div>
-                                <div class="flex justify-between"><span class="text-gray-400">SECTOR:</span><span id="output-zone" class="text-white font-bold">—</span></div>
-                                <div class="flex justify-between"><span class="text-gray-400">FECHA:</span><span class="text-white font-bold">17/10/2026</span></div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        function renderComicModal(chNum) {
-            const content = document.getElementById('modal-content');
-            const chapter = comicData[chNum];
-
-            let html = `
-                <div class="flex justify-between items-center border-b border-gangBorder pb-4">
-                    <div>
-                        <span class="stamp text-xs">ARCHIVO GRÁFICO</span>
-                        <h3 class="font-action text-2xl text-white mt-1">${chapter.title}</h3>
-                    </div>
-                    <div class="flex space-x-2 font-mono text-xs">
-                        <button onclick="renderComicModal(1)" class="px-2.5 py-1 rounded ${chNum===1?'bg-gangRed text-white':'bg-black text-gray-400'}">1</button>
-                        <button onclick="renderComicModal(2)" class="px-2.5 py-1 rounded ${chNum===2?'bg-gangRed text-white':'bg-black text-gray-400'}">2</button>
-                        <button onclick="renderComicModal(3)" class="px-2.5 py-1 rounded ${chNum===3?'bg-gangRed text-white':'bg-black text-gray-400'}">3</button>
-                        <button onclick="renderComicModal(4)" class="px-2.5 py-1 rounded ${chNum===4?'bg-gangRed text-white':'bg-black text-gray-400'}">4</button>
-                    </div>
-                </div>
-                <div class="mb-6 text-center">
-                    <span class="font-mono text-xs text-gangRed uppercase block mb-2">Portada Oficial</span>
-                    <img src="${chapter.cover}" class="max-w-xs mx-auto rounded border-2 border-gangRed box-glow-red">
-                </div>
-                <div>
-                    <span class="font-mono text-xs text-gangRed uppercase block mb-3">Secuencia de Páginas</span>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            `;
-
-            chapter.pages.forEach((page, idx) => {
-                html += `<div class="bg-black p-1.5 rounded border border-gangBorder"><img src="${page}" class="w-full h-auto rounded"><span class="text-[9px] font-mono text-gangYellow block text-center mt-1">Pág. ${idx+1}</span></div>`;
-            });
-
-            html += `</div></div>`;
-            content.innerHTML = html;
-        }
-
-        function closeModal() {
-            document.getElementById('modal-container').classList.add('hidden');
-        }
-
-        function generateBadge() {
-            const name = document.getElementById('recrut-name').value.trim();
-            const zone = document.getElementById('recrut-zone').value;
-            if(!name) { alert('Ingrese su alias de recluta.'); return; }
-            document.getElementById('output-name').innerText = name.toUpperCase();
-            document.getElementById('output-zone').innerText = zone;
-            document.getElementById('badge-output').classList.remove('hidden');
-        }
-    </script>
 </body>
 </html>
